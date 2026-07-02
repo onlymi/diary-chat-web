@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { EyeIcon, LeafMark } from "../components/icons";
-import "./LoginPage.css";
+import "../styles/AuthPage.css";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,6 +12,10 @@ function LoginPage() {
     event.preventDefault();
     setSubmitted(true);
   };
+
+  useEffect(() => {
+    document.title = "로그인 | 마음한줄";
+  }, []);
 
   return (
     <main className="login-page">
@@ -142,7 +147,7 @@ function LoginPage() {
           </button>
 
           <p className="signup-link">
-            아직 계정이 없으신가요? <a href="#signup">회원가입</a>
+            아직 계정이 없으신가요? <Link to="/signup">회원가입</Link>
           </p>
         </div>
 

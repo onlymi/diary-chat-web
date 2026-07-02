@@ -1,0 +1,165 @@
+.signup-form-panel {
+  padding-top: 24px;
+  padding-bottom: 22px;
+}
+
+.signup-card {
+  width: min(100%, 430px);
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
+
+.signup-card header {
+  margin-bottom: 28px;
+}
+
+.signup-card .welcome-icon {
+  width: 43px;
+  height: 43px;
+  margin-bottom: 13px;
+}
+
+.signup-card h2 {
+  font-size: 27px;
+}
+
+.signup-field {
+  margin-bottom: 15px;
+}
+
+.signup-field > label {
+  display: block;
+  margin-bottom: 7px;
+  color: #445249;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.signup-field > input,
+.signup-field .password-field input {
+  width: 100%;
+  height: 48px;
+  margin: 0;
+  padding: 0 16px 1px;
+  color: #26342d;
+  border: 1px solid #d8ddd8;
+  border-radius: 6px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.signup-field > input:focus,
+.signup-field .password-field input:focus {
+  border-color: #66806f;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(65, 99, 78, 0.09);
+}
+
+.signup-field .visibility-button {
+  height: 48px;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 5px;
+  color: #919a93;
+  font-size: 9px;
+}
+
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 4px 0 19px;
+  color: #69756d;
+  font-size: 10px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.terms-check input {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #3f624d;
+}
+
+.terms-check a {
+  color: #3c624b;
+  font-weight: 600;
+}
+
+.signup-message {
+  margin: -8px 0 13px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.error-message {
+  color: #a94b46;
+}
+
+.success-message {
+  color: #557161;
+}
+
+.signup-button {
+  height: 49px;
+}
+
+.login-link {
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .signup-form-panel {
+    padding-top: 28px;
+  }
+
+  .signup-card {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-card {
+    padding-top: 28px;
+  }
+
+  .signup-field {
+    margin-bottom: 13px;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 901px) {
+  .signup-story-content .quote-card {
+    margin-top: 24px;
+  }
+
+  .signup-card {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .signup-card header {
+    margin-bottom: 18px;
+  }
+
+  .signup-card .welcome-icon {
+    display: none;
+  }
+
+  .signup-field {
+    margin-bottom: 10px;
+  }
+
+  .field-hint {
+    display: none;
+  }
+}
