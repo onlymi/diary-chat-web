@@ -99,6 +99,25 @@ function SignupPage() {
 
           <form onSubmit={handleSubmit}>
             <div className="signup-field">
+              <label htmlFor="user-id">아이디</label>
+              <input
+                id="user-id"
+                name="userId"
+                type="text"
+                placeholder="사용할 아이디를 입력해주세요"
+                autoComplete="username"
+                minLength={4}
+                maxLength={20}
+                pattern="[A-Za-z0-9_]+"
+                title="영문, 숫자, 밑줄만 사용할 수 있어요."
+                required
+              />
+              <span className="field-hint">
+                영문, 숫자, 밑줄을 사용해 4자 이상 20자 이하로 입력해주세요.
+              </span>
+            </div>
+
+            <div className="signup-field">
               <label htmlFor="nickname">닉네임</label>
               <input
                 id="nickname"
@@ -123,6 +142,21 @@ function SignupPage() {
                 type="email"
                 placeholder="example@email.com"
                 autoComplete="email"
+                required
+              />
+            </div>
+
+            <div className="signup-field">
+              <label htmlFor="phone-number">휴대폰 번호</label>
+              <input
+                id="phone-number"
+                name="phoneNumber"
+                type="tel"
+                placeholder="010-1234-5678"
+                autoComplete="tel"
+                inputMode="tel"
+                pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
+                title="휴대폰 번호를 올바르게 입력해주세요."
                 required
               />
             </div>
@@ -212,7 +246,7 @@ function SignupPage() {
           </form>
 
           <p className="signup-link login-link">
-            이미 계정이 있으신가요? <Link to="/login">로그인</Link>
+            이미 계정이 있으신가요? <Link to="/">로그인</Link>
           </p>
         </div>
 
