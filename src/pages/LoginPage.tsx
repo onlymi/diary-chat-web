@@ -120,7 +120,7 @@ function LoginPage() {
                 <input type="checkbox" name="remember" />
                 <span>로그인 상태 유지</span>
               </label>
-              <a href="#forgot-password">비밀번호를 잊으셨나요?</a>
+              <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
             </div>
 
             <button className="login-button" type="submit">
