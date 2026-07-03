@@ -84,13 +84,18 @@ function LoginPage() {
           </header>
 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="user-id">아이디</label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="example@email.com"
-              autoComplete="email"
+              id="user-id"
+              className="login-identifier"
+              name="userId"
+              type="text"
+              placeholder="아이디를 입력해주세요"
+              autoComplete="username"
+              minLength={4}
+              maxLength={20}
+              pattern="[A-Za-z0-9_]+"
+              title="영문, 숫자, 밑줄만 사용할 수 있어요."
               required
             />
 

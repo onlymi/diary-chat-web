@@ -154,7 +154,7 @@ Diary 1 : N ChatSession
 
 ``` json
 {
-  "email": "test@example.com",
+  "userId": "seungmin",
   "password": "12345678"
 }
 ```

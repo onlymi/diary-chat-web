@@ -252,6 +252,7 @@ form > label {
   font-weight: 600;
 }
 
+.login-identifier,
 input[type='email'],
 .password-field input {
   width: 100%;
@@ -266,6 +267,7 @@ input[type='email'],
   font-size: 13px;
 }
 
+.login-identifier,
 input[type='email'] {
   margin-bottom: 20px;
 }
@@ -275,6 +277,7 @@ input::placeholder {
   font-size: 12px;
 }
 
+.login-identifier:focus,
 input[type='email']:focus,
 .password-field input:focus {
   border-color: #66806f;
