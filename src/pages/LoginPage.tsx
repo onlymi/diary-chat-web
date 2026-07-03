@@ -5,6 +5,7 @@ import { EyeIcon, LeafMark } from "../components/icons";
 import "../styles/AuthPage.css";
 
 function LoginPage() {
+  const [isPrivate, setIsPrivate] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -122,7 +123,12 @@ function LoginPage() {
 
             <div className="form-options">
               <label className="remember">
-                <input type="checkbox" name="remember" />
+                <input
+                  type="checkbox"
+                  name="remember"
+                  checked={isPrivate}
+                  onChange={(e) => setIsPrivate(e.target.checked)}
+                />
                 <span>로그인 상태 유지</span>
               </label>
               <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
