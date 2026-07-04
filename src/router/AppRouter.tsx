@@ -5,6 +5,7 @@ import DiariesPage from "../pages/DiariesPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import LoginPage from "../pages/LoginPage";
 import MainPage from "../pages/MainPage";
+import SettingsPage from "../pages/SettingsPage";
 import SignupPage from "../pages/SignupPage";
 
 function AppRouter() {
@@ -19,6 +20,7 @@ function AppRouter() {
         <Route path="/diaries" element={<DiariesPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -52,10 +52,10 @@ function CalendarPage() {
         </nav>
 
         <div className="sidebar-bottom">
-          <a href="#settings">
+          <Link to="/settings">
             <DashboardIcon name="settings" />
             <span>설정</span>
-          </a>
+          </Link>
           <div className="sidebar-profile">
             <span className="profile-avatar">승</span>
             <span>
