@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EyeIcon, LeafMark } from "../components/icons";
 import "../styles/AuthPage.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [isPrivate, setIsPrivate] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -137,11 +137,6 @@ function LoginPage() {
             <button className="login-button" type="submit">
               로그인
             </button>
-            {submitted && (
-              <p className="submit-message" role="status">
-                입력을 확인했어요. 실제 API 연결 후 로그인이 완료됩니다.
-              </p>
-            )}
           </form>
 
           <div className="divider">
