@@ -73,7 +73,8 @@
 
 .dashboard-nav a:hover,
 .sidebar-bottom > a:hover,
-.dashboard-nav a.active {
+.dashboard-nav a.active,
+.sidebar-bottom > a.active {
   color: #fff;
   background: rgba(255, 255, 255, 0.09);
 }

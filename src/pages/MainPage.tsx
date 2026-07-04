@@ -9,73 +9,8 @@ function MainPage() {
     document.title = "나의 기록 | 마음한줄";
   }, []);
 
-  const today = new Intl.DateTimeFormat("ko-KR", {
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  }).format(new Date());
-
   return (
-    <div className="dashboard-shell">
-      <aside className="dashboard-sidebar">
-        <Link className="dashboard-brand" to="/home" aria-label="마음한줄 홈">
-          <span className="dashboard-brand-mark">
-            <LeafMark />
-          </span>
-          <span>마음한줄</span>
-        </Link>
-
-        <nav className="dashboard-nav" aria-label="주요 메뉴">
-          <Link className="active" to="/home">
-            <DashboardIcon name="home" />
-            <span>홈</span>
-          </Link>
-          <Link to="/diaries">
-            <DashboardIcon name="diary" />
-            <span>나의 일기</span>
-          </Link>
-          <Link to="/chat">
-            <DashboardIcon name="chat" />
-            <span>마음 대화</span>
-          </Link>
-          <Link to="/calendar">
-            <DashboardIcon name="calendar" />
-            <span>감정 캘린더</span>
-          </Link>
-        </nav>
-
-        <div className="sidebar-bottom">
-          <Link to="/settings">
-            <DashboardIcon name="settings" />
-            <span>설정</span>
-          </Link>
-          <div className="sidebar-profile">
-            <span className="profile-avatar">승</span>
-            <span>
-              <strong>승민님</strong>
-              <small>@seungmin</small>
-            </span>
-            <button type="button" aria-label="프로필 메뉴">
-              ···
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      <main className="dashboard-main">
-        <header className="dashboard-header">
-          <div className="mobile-dashboard-brand">
-            <LeafMark />
-            <span>마음한줄</span>
-          </div>
-          <p>{today}</p>
-          <button type="button" className="notification-button" aria-label="알림">
-            <DashboardIcon name="bell" />
-            <i />
-          </button>
-        </header>
-
-        <div className="dashboard-content">
+    <div className="dashboard-content">
           <section className="dashboard-greeting">
             <span className="greeting-eyebrow">GOOD EVENING</span>
             <h1>
@@ -192,8 +127,6 @@ function MainPage() {
               </div>
             </div>
           </section>
-        </div>
-      </main>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DashboardLayout from "../components/layout/DashboardLayout";
 import CalendarPage from "../pages/CalendarPage";
 import ChatPage from "../pages/ChatPage";
 import DiariesPage from "../pages/DiariesPage";
@@ -16,11 +17,13 @@ function AppRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<MainPage />} />
-        <Route path="/diaries" element={<DiariesPage />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        <Route element={<DashboardLayout />}>
+          <Route path="/home" element={<MainPage />} />
+          <Route path="/diaries" element={<DiariesPage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
