@@ -55,10 +55,10 @@ function DiariesPage() {
             <DashboardIcon name="chat" />
             <span>마음 대화</span>
           </Link>
-          <a href="#calendar">
+          <Link to="/calendar">
             <DashboardIcon name="calendar" />
             <span>감정 캘린더</span>
-          </a>
+          </Link>
         </nav>
 
         <div className="sidebar-bottom">

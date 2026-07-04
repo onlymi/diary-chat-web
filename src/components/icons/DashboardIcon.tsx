@@ -13,7 +13,9 @@ export type DashboardIconName =
   | "grid"
   | "list"
   | "plus"
-  | "send";
+  | "send"
+  | "chevron-left"
+  | "chevron-right";
 
 const iconPaths: Record<DashboardIconName, ReactNode> = {
   home: (
@@ -78,6 +80,8 @@ const iconPaths: Record<DashboardIconName, ReactNode> = {
       <path d="M22 2 11 13" />
     </>
   ),
+  "chevron-left": <path d="m15 18-6-6 6-6" />,
+  "chevron-right": <path d="m9 18 6-6-6-6" />,
 };
 
 function DashboardIcon({ name }: { name: DashboardIconName }) {
