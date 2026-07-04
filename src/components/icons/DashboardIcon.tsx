@@ -11,7 +11,9 @@ export type DashboardIconName =
   | "bell"
   | "search"
   | "grid"
-  | "list";
+  | "list"
+  | "plus"
+  | "send";
 
 const iconPaths: Record<DashboardIconName, ReactNode> = {
   home: (
@@ -68,6 +70,13 @@ const iconPaths: Record<DashboardIconName, ReactNode> = {
   ),
   list: (
     <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />
+  ),
+  plus: <path d="M12 5v14M5 12h14" />,
+  send: (
+    <>
+      <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+      <path d="M22 2 11 13" />
+    </>
   ),
 };
 

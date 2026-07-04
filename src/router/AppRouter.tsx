@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ChatPage from "../pages/ChatPage";
 import DiariesPage from "../pages/DiariesPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import LoginPage from "../pages/LoginPage";
@@ -15,6 +16,7 @@ function AppRouter() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<MainPage />} />
         <Route path="/diaries" element={<DiariesPage />} />
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </BrowserRouter>
   );

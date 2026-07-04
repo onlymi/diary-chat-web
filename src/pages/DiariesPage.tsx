@@ -51,10 +51,10 @@ function DiariesPage() {
             <DashboardIcon name="diary" />
             <span>나의 일기</span>
           </Link>
-          <a href="#chat">
+          <Link to="/chat">
             <DashboardIcon name="chat" />
             <span>마음 대화</span>
-          </a>
+          </Link>
           <a href="#calendar">
             <DashboardIcon name="calendar" />
             <span>감정 캘린더</span>
