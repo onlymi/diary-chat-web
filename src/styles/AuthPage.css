@@ -5,14 +5,33 @@
 .login-page {
   display: grid;
   grid-template-columns: minmax(420px, 46%) minmax(540px, 54%);
+  align-items: start;
   min-height: 100vh;
 }
 
+.login-page:not(.signup-page) {
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.login-page:not(.signup-page) > .form-panel {
+  height: 100%;
+  min-height: 0;
+  overflow-y: hidden;
+  overscroll-behavior-y: none;
+}
+
 .story-panel {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
+  align-self: start;
+  height: 100vh;
+  height: 100svh;
   min-height: 100vh;
+  min-height: 100svh;
   padding: 48px clamp(40px, 5vw, 78px) 38px;
   overflow: hidden;
   color: #f8f5e9;
@@ -233,6 +252,7 @@ form > label {
   font-weight: 600;
 }
 
+.login-identifier,
 input[type='email'],
 .password-field input {
   width: 100%;
@@ -244,8 +264,10 @@ input[type='email'],
   outline: none;
   background: rgba(255,255,255,.72);
   transition: border-color .2s, box-shadow .2s, background .2s;
+  font-size: 13px;
 }
 
+.login-identifier,
 input[type='email'] {
   margin-bottom: 20px;
 }
@@ -255,6 +277,7 @@ input::placeholder {
   font-size: 12px;
 }
 
+.login-identifier:focus,
 input[type='email']:focus,
 .password-field input:focus {
   border-color: #66806f;
@@ -461,6 +484,10 @@ input:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .login-page:not(.signup-page) > .form-panel {
+    overflow-y: auto;
+  }
+
   .login-page {
     display: block;
   }
@@ -507,6 +534,10 @@ input:focus-visible {
 }
 
 @media (max-height: 760px) and (min-width: 901px) {
+  .login-page:not(.signup-page) > .form-panel {
+    overflow-y: auto;
+  }
+
   .story-content {
     padding: 40px 0 24px;
   }

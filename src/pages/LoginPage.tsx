@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { EyeIcon, LeafMark } from "../components/icons";
-import "./LoginPage.css";
+import "../styles/AuthPage.css";
 
 function LoginPage() {
+  const [isPrivate, setIsPrivate] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -11,6 +13,10 @@ function LoginPage() {
     event.preventDefault();
     setSubmitted(true);
   };
+
+  useEffect(() => {
+    document.title = "로그인 | 마음한줄";
+  }, []);
 
   return (
     <main className="login-page">
@@ -79,13 +85,18 @@ function LoginPage() {
           </header>
 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="user-id">아이디</label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="example@email.com"
-              autoComplete="email"
+              id="user-id"
+              className="login-identifier"
+              name="userId"
+              type="text"
+              placeholder="아이디를 입력해주세요"
+              autoComplete="username"
+              minLength={4}
+              maxLength={20}
+              pattern="[A-Za-z0-9_]+"
+              title="영문, 숫자, 밑줄만 사용할 수 있어요."
               required
             />
 
@@ -112,10 +123,15 @@ function LoginPage() {
 
             <div className="form-options">
               <label className="remember">
-                <input type="checkbox" name="remember" />
+                <input
+                  type="checkbox"
+                  name="remember"
+                  checked={isPrivate}
+                  onChange={(e) => setIsPrivate(e.target.checked)}
+                />
                 <span>로그인 상태 유지</span>
               </label>
-              <a href="#forgot-password">비밀번호를 잊으셨나요?</a>
+              <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
             </div>
 
             <button className="login-button" type="submit">
@@ -142,7 +158,7 @@ function LoginPage() {
           </button>
 
           <p className="signup-link">
-            아직 계정이 없으신가요? <a href="#signup">회원가입</a>
+            아직 계정이 없으신가요? <Link to="/signup">회원가입</Link>
           </p>
         </div>
 
