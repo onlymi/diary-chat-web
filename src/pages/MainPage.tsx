@@ -36,10 +36,10 @@ function MainPage() {
                 <h2>오늘의 일기 쓰기</h2>
                 <p>지금 떠오르는 마음을 자유롭게 남겨보세요.</p>
               </div>
-              <button type="button">
+              <Link className="write-diary-link" to="/diaries/new">
                 기록 시작하기
                 <DashboardIcon name="arrow" />
-              </button>
+              </Link>
             </article>
 
             <article className="chat-card" id="chat">

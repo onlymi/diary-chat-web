@@ -349,6 +349,7 @@
 }
 
 .write-card button,
+.write-card .write-diary-link,
 .chat-card button {
   display: inline-flex;
   align-items: center;
@@ -362,13 +363,16 @@
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.write-card button {
+.write-card button,
+.write-card .write-diary-link {
   grid-column: 2;
 }
 
 .write-card button svg,
+.write-card .write-diary-link svg,
 .chat-card button svg,
 .section-heading a svg,
 .diary-item > button svg {

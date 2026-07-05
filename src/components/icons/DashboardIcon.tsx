@@ -18,7 +18,9 @@ export type DashboardIconName =
   | "chevron-right"
   | "user"
   | "lock"
-  | "logout";
+  | "logout"
+  | "image"
+  | "check";
 
 const iconPaths: Record<DashboardIconName, ReactNode> = {
   home: (
@@ -98,6 +100,14 @@ const iconPaths: Record<DashboardIconName, ReactNode> = {
     </>
   ),
   logout: <path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" />,
+  image: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <circle cx="9" cy="9" r="2" />
+      <path d="m21 15-5-5L5 20" />
+    </>
+  ),
+  check: <path d="m5 12 4 4L19 6" />,
 };
 
 function DashboardIcon({ name }: { name: DashboardIconName }) {

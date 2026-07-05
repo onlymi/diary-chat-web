@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { DashboardIcon, LeafMark } from "../components/icons";
 import { diaries } from "../mocks/diaryData";
 import "./MainPage.css";
@@ -33,10 +34,10 @@ function DiariesPage() {
               <h1>나의 일기</h1>
               <p>지금까지 마음에 담아둔 이야기를 천천히 돌아보세요.</p>
             </div>
-            <button type="button" className="new-diary-button">
+            <Link className="new-diary-button" to="/diaries/new">
               <DashboardIcon name="pen" />
               새 일기 쓰기
-            </button>
+            </Link>
           </header>
 
           <section className="diary-overview" aria-label="기록 요약">

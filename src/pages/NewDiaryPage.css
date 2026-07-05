@@ -1,0 +1,480 @@
+.new-diary-content {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 48px clamp(28px, 5vw, 72px) 80px;
+}
+
+.new-diary-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.new-diary-header > div > span {
+  color: #819087;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+}
+
+.new-diary-header h1 {
+  margin: 9px 0 8px;
+  color: #293b31;
+  font-family: "Gowun Batang", serif;
+  font-size: clamp(30px, 4vw, 42px);
+}
+
+.new-diary-header p {
+  margin: 0;
+  color: #818c85;
+  font-size: 10px;
+}
+
+.back-to-diaries {
+  display: flex;
+  height: 38px;
+  padding: 0 14px 0 10px;
+  align-items: center;
+  gap: 5px;
+  color: #617168;
+  border: 1px solid #d6ddd7;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.62);
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.back-to-diaries:hover {
+  color: #355a45;
+  border-color: #bdc9bf;
+  background: #fff;
+}
+
+.back-to-diaries svg {
+  width: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.diary-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(270px, 0.65fr);
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.editor-paper,
+.option-card {
+  border: 1px solid #dfe3dd;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.editor-paper {
+  min-height: 690px;
+  padding: 34px 38px;
+}
+
+.editor-date-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e4e7e2;
+}
+
+.editor-date-row label {
+  color: #7f8b83;
+  font-size: 8px;
+}
+
+.editor-date-row input {
+  display: block;
+  margin-top: 6px;
+  padding: 0;
+  color: #46584d;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: "Gowun Batang", serif;
+  font-size: 13px;
+}
+
+.editor-date-row > span {
+  color: #a0a8a2;
+  font-size: 8px;
+}
+
+.diary-title-input,
+.diary-content-input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.diary-title-input {
+  margin-top: 29px;
+  color: #33463a;
+  font-family: "Gowun Batang", serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.diary-content-input {
+  min-height: 310px;
+  margin-top: 21px;
+  resize: vertical;
+  color: #56645b;
+  font-family: "Gowun Batang", serif;
+  font-size: 13px;
+  line-height: 2;
+}
+
+.image-upload {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 13px;
+  padding: 16px;
+  border: 1px dashed #d3dbd4;
+  border-radius: 6px;
+  background: #fafbf8;
+}
+
+.image-upload > svg {
+  width: 21px;
+  fill: none;
+  stroke: #708178;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+
+.image-upload strong,
+.image-upload span {
+  display: block;
+}
+
+.image-upload strong {
+  color: #59685f;
+  font-size: 9px;
+}
+
+.image-upload span {
+  margin-top: 4px;
+  color: #9ba39e;
+  font-size: 7px;
+}
+
+.image-upload label {
+  padding: 8px 11px;
+  color: #58705f;
+  border: 1px solid #d5ddd6;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+.image-upload input {
+  display: none;
+}
+
+.tag-editor {
+  margin-top: 24px;
+}
+
+.tag-editor > span {
+  color: #56655c;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.tag-editor > div {
+  display: flex;
+  min-height: 38px;
+  margin-top: 8px;
+  padding: 5px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dbe0da;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.tag-editor button {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  color: #607568;
+  border: 0;
+  border-radius: 12px;
+  background: #e9eee8;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+.tag-editor input {
+  min-width: 120px;
+  flex: 1;
+  border: 0;
+  outline: none;
+  font-size: 9px;
+}
+
+.tag-editor small {
+  display: block;
+  margin-top: 5px;
+  color: #9aa39d;
+  font-size: 7px;
+}
+
+.editor-options {
+  display: grid;
+  align-content: start;
+  gap: 13px;
+}
+
+.option-card {
+  padding: 21px;
+}
+
+.option-card header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-icon {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  color: #4b6c56;
+  border-radius: 50%;
+  background: #e6ede5;
+}
+
+.option-icon svg {
+  width: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+
+.option-card h2 {
+  margin: 0;
+  color: #415449;
+  font-family: "Gowun Batang", serif;
+  font-size: 13px;
+}
+
+.option-card header p {
+  margin: 4px 0 0;
+  color: #9aa39d;
+  font-size: 7px;
+}
+
+.emotion-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.emotion-options button,
+.weather-options button {
+  display: flex;
+  min-height: 54px;
+  padding: 7px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #77837b;
+  border: 1px solid #e0e4df;
+  border-radius: 6px;
+  background: #fafbf8;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+.emotion-options button span,
+.weather-options button span {
+  font-size: 17px;
+}
+
+.emotion-options button.active,
+.weather-options button.active {
+  color: #3f624d;
+  border-color: #91a594;
+  background: #edf2eb;
+  box-shadow: 0 3px 10px rgba(53, 76, 61, 0.07);
+}
+
+.weather-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.weather-options button {
+  min-height: 50px;
+}
+
+.privacy-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.privacy-card strong {
+  color: #4a5c51;
+  font-size: 9px;
+}
+
+.privacy-card p {
+  margin: 5px 0 0;
+  color: #99a19c;
+  font-size: 7px;
+}
+
+.privacy-card > button {
+  position: relative;
+  width: 39px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #cbd2cc;
+  cursor: pointer;
+}
+
+.privacy-card > button span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.privacy-card > button.active {
+  background: #50725c;
+}
+
+.privacy-card > button.active span {
+  transform: translateX(17px);
+}
+
+.editor-actions {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.editor-actions button {
+  height: 43px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.draft-button {
+  color: #617168;
+  border: 1px solid #d4dcd5;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.save-diary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  border: 0;
+  background: #355a45;
+}
+
+.save-diary-button svg {
+  width: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.editor-message {
+  margin: 0;
+  color: #5c7965;
+  font-size: 8px;
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .diary-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-options {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .privacy-card,
+  .editor-actions,
+  .editor-message {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .new-diary-content {
+    padding: 36px 16px 86px;
+  }
+
+  .new-diary-header p {
+    max-width: 250px;
+    line-height: 1.6;
+  }
+
+  .editor-paper {
+    min-height: auto;
+    padding: 25px 20px;
+  }
+
+  .editor-options {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-card,
+  .editor-actions,
+  .editor-message {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .editor-date-row > span {
+    display: none;
+  }
+
+  .image-upload {
+    grid-template-columns: auto 1fr;
+  }
+
+  .image-upload label {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+}
