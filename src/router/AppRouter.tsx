@@ -10,10 +10,12 @@ import NewDiaryPage from "../pages/NewDiaryPage";
 import NewChatPage from "../pages/NewChatPage";
 import SettingsPage from "../pages/SettingsPage";
 import SignupPage from "../pages/SignupPage";
+import ScrollToTop from "./ScrollToTop";
 
 function AppRouter() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
