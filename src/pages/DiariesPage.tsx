@@ -1,0 +1,160 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { DashboardIcon, LeafMark } from "../components/icons";
+import { diaries } from "../mocks/diaryData";
+import "./MainPage.css";
+import "./DiariesPage.css";
+
+function DiariesPage() {
+  const [query, setQuery] = useState("");
+  const [mood, setMood] = useState("전체 감정");
+  const [view, setView] = useState<"grid" | "list">("grid");
+
+  useEffect(() => {
+    document.title = "나의 일기 | 마음한줄";
+  }, []);
+
+  const filteredDiaries = useMemo(
+    () =>
+      diaries.filter(
+        (diary) =>
+          (mood === "전체 감정" || diary.mood === mood) &&
+          `${diary.title} ${diary.content} ${diary.tags.join(" ")}`
+            .toLowerCase()
+            .includes(query.toLowerCase()),
+      ),
+    [mood, query],
+  );
+
+  return (
+    <div className="diaries-content">
+          <header className="diaries-title">
+            <div>
+              <span>MY STORIES</span>
+              <h1>나의 일기</h1>
+              <p>지금까지 마음에 담아둔 이야기를 천천히 돌아보세요.</p>
+            </div>
+            <Link className="new-diary-button" to="/diaries/new">
+              <DashboardIcon name="pen" />
+              새 일기 쓰기
+            </Link>
+          </header>
+
+          <section className="diary-overview" aria-label="기록 요약">
+            <div>
+              <span>전체 기록</span>
+              <strong>24</strong>
+              <small>개의 이야기</small>
+            </div>
+            <div>
+              <span>이번 달</span>
+              <strong>6</strong>
+              <small>개의 이야기</small>
+            </div>
+            <div>
+              <span>가장 많은 마음</span>
+              <strong className="overview-mood">🌿 평온</strong>
+              <small>8번 기록했어요</small>
+            </div>
+            <blockquote>
+              “기록할수록 선명해지는
+              <br />
+              나의 마음”
+            </blockquote>
+          </section>
+
+          <section className="diary-toolbar" aria-label="일기 검색 및 필터">
+            <label className="diary-search">
+              <DashboardIcon name="search" />
+              <input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="제목, 내용, 태그로 검색"
+                aria-label="일기 검색"
+              />
+            </label>
+            <select aria-label="기간 선택" defaultValue="2026년 7월">
+              <option>2026년 7월</option>
+              <option>2026년 6월</option>
+              <option>2026년 5월</option>
+            </select>
+            <select
+              aria-label="감정 선택"
+              value={mood}
+              onChange={(event) => setMood(event.target.value)}
+            >
+              <option>전체 감정</option>
+              <option>평온</option>
+              <option>설렘</option>
+              <option>생각 많음</option>
+              <option>행복</option>
+              <option>지침</option>
+              <option>감사</option>
+            </select>
+            <div className="view-switch" aria-label="보기 방식">
+              <button
+                type="button"
+                className={view === "grid" ? "active" : ""}
+                onClick={() => setView("grid")}
+                aria-label="카드 보기"
+                aria-pressed={view === "grid"}
+              >
+                <DashboardIcon name="grid" />
+              </button>
+              <button
+                type="button"
+                className={view === "list" ? "active" : ""}
+                onClick={() => setView("list")}
+                aria-label="목록 보기"
+                aria-pressed={view === "list"}
+              >
+                <DashboardIcon name="list" />
+              </button>
+            </div>
+          </section>
+
+          {filteredDiaries.length > 0 ? (
+            <section className={`diary-card-grid ${view}`}>
+              {filteredDiaries.map((diary) => (
+                <article className="story-card" key={diary.id}>
+                  <div className="story-card-date">
+                    <strong>{diary.day}</strong>
+                    <span>{diary.month}</span>
+                    <small>{diary.weekday}</small>
+                  </div>
+                  <div className="story-card-body">
+                    <div className="story-card-mood">
+                      <span>{diary.emoji}</span>
+                      {diary.mood}
+                    </div>
+                    <h2>{diary.title}</h2>
+                    <p>{diary.content}</p>
+                    <div className="story-card-tags">
+                      {diary.tags.map((tag) => (
+                        <span key={tag}>#{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button type="button" className="story-more" aria-label="일기 메뉴">
+                    ···
+                  </button>
+                </article>
+              ))}
+            </section>
+          ) : (
+            <div className="empty-diaries">
+              <LeafMark />
+              <strong>조건에 맞는 일기가 없어요.</strong>
+              <p>검색어나 감정 필터를 변경해보세요.</p>
+            </div>
+          )}
+
+          <button type="button" className="load-more-button">
+            기록 더 보기
+          </button>
+    </div>
+  );
+}
+
+export default DiariesPage;

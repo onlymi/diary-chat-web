@@ -1,0 +1,366 @@
+.calendar-content {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 50px clamp(28px, 5vw, 72px) 80px;
+}
+
+.calendar-title > span,
+.detail-label,
+.summary-heading span {
+  color: #819087;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+}
+
+.calendar-title h1 {
+  margin: 9px 0 8px;
+  color: #293b31;
+  font-family: "Gowun Batang", serif;
+  font-size: clamp(30px, 4vw, 42px);
+}
+
+.calendar-title p {
+  margin: 0;
+  color: #818c85;
+  font-size: 11px;
+}
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: minmax(520px, 1.5fr) minmax(260px, 0.65fr);
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.calendar-card,
+.selected-mood-card,
+.monthly-summary {
+  border: 1px solid #dfe3dd;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.57);
+}
+
+.month-header {
+  display: flex;
+  min-height: 78px;
+  padding: 0 25px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e3e6e1;
+}
+
+.month-header button {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  padding: 0;
+  place-items: center;
+  color: #637168;
+  border: 1px solid #dfe3dd;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.month-header button svg {
+  width: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.month-header div {
+  text-align: center;
+}
+
+.month-header strong,
+.month-header span {
+  display: block;
+}
+
+.month-header strong {
+  color: #384b40;
+  font-family: "Gowun Batang", serif;
+  font-size: 17px;
+}
+
+.month-header span {
+  margin-top: 5px;
+  color: #929b95;
+  font-size: 8px;
+}
+
+.weekday-row,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekday-row {
+  padding: 13px 18px 7px;
+  color: #929b95;
+  font-size: 8px;
+  text-align: center;
+}
+
+.calendar-grid {
+  padding: 0 18px 18px;
+}
+
+.calendar-grid > button,
+.empty-day {
+  position: relative;
+  min-height: 82px;
+}
+
+.calendar-grid > button {
+  display: flex;
+  padding: 9px;
+  flex-direction: column;
+  align-items: center;
+  color: #68766d;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.calendar-grid > button:hover {
+  border-color: #e1e5df;
+  border-radius: 7px;
+  background: #fafbf8;
+}
+
+.calendar-grid > button.selected {
+  border-color: #9eb1a2;
+  border-radius: 7px;
+  background: #f2f6f0;
+  box-shadow: 0 4px 14px rgba(58, 82, 66, 0.08);
+}
+
+.calendar-grid time {
+  align-self: flex-start;
+  font-size: 9px;
+}
+
+.calendar-grid button > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin-top: 4px;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf1eb;
+  font-size: 15px;
+}
+
+.calendar-grid .yellow > span { background: #f5f0d9; }
+.calendar-grid .orange > span { background: #f5e8d9; }
+.calendar-grid .gray > span { background: #e8ebe9; }
+.calendar-grid .pink > span { background: #f3e5df; }
+.calendar-grid .blue > span { background: #e1e9ec; }
+
+.calendar-grid button.today time {
+  color: #fff;
+  border-radius: 50%;
+  background: #496b56;
+}
+
+.calendar-grid button.today i {
+  margin-top: 18px;
+  color: #728078;
+  font-size: 7px;
+  font-style: normal;
+}
+
+.calendar-insights {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.selected-mood-card {
+  min-height: 330px;
+  padding: 25px;
+  text-align: center;
+}
+
+.selected-mood-card > time {
+  display: block;
+  margin-top: 8px;
+  color: #405347;
+  font-family: "Gowun Batang", serif;
+  font-size: 14px;
+}
+
+.selected-emoji {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 20px auto 8px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8eee7;
+  font-size: 25px;
+}
+
+.selected-mood-name {
+  color: #718078;
+  font-size: 9px;
+}
+
+.selected-mood-card h2 {
+  margin: 14px 0 7px;
+  color: #34483b;
+  font-family: "Gowun Batang", serif;
+  font-size: 16px;
+}
+
+.selected-mood-card > p,
+.no-mood p {
+  margin: 0;
+  color: #8e9891;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.selected-tags {
+  display: flex;
+  margin-top: 13px;
+  justify-content: center;
+  gap: 6px;
+}
+
+.selected-tags span {
+  padding: 4px 8px;
+  color: #6e8174;
+  border-radius: 11px;
+  background: #edf1eb;
+  font-size: 8px;
+}
+
+.selected-mood-card > button,
+.no-mood button {
+  height: 35px;
+  margin-top: 18px;
+  padding: 0 16px;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #41624d;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.no-mood {
+  padding-top: 45px;
+}
+
+.no-mood svg {
+  width: 45px;
+  fill: none;
+  stroke: #78907f;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.3;
+}
+
+.no-mood strong {
+  display: block;
+  margin: 12px 0 6px;
+  color: #4f6056;
+  font-family: "Gowun Batang", serif;
+}
+
+.monthly-summary {
+  padding: 22px 24px;
+}
+
+.summary-heading h2 {
+  margin: 5px 0 17px;
+  color: #3a4d42;
+  font-family: "Gowun Batang", serif;
+  font-size: 15px;
+}
+
+.mood-summary-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mood-summary-list > div {
+  display: grid;
+  grid-template-columns: 20px 58px minmax(40px, 1fr) 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.mood-summary-list > div > span {
+  font-size: 12px;
+}
+
+.mood-summary-list strong,
+.mood-summary-list small {
+  color: #6d7b72;
+  font-size: 8px;
+  font-weight: 500;
+}
+
+.mood-summary-list i {
+  height: 4px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #e8ebe7;
+}
+
+.mood-summary-list b {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #78927f;
+}
+
+.monthly-summary > p {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  color: #88938c;
+  border-top: 1px solid #e4e7e2;
+  font-size: 8px;
+}
+
+.monthly-summary > p strong {
+  color: #4c6354;
+}
+
+@media (max-width: 1000px) {
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-insights {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .calendar-content {
+    padding: 36px 14px 86px;
+  }
+
+  .calendar-card {
+    overflow-x: auto;
+  }
+
+  .month-header,
+  .weekday-row,
+  .calendar-grid {
+    min-width: 570px;
+  }
+
+  .calendar-insights {
+    grid-template-columns: 1fr;
+  }
+}
