@@ -5,7 +5,7 @@
 ``` text
 users
 - id PK
-- user_id
+- login_id
 - email
 - password
 - nickname
@@ -75,7 +75,7 @@ Diary 1 : N ChatSession
   컬럼                타입       설명
   ------------------- ---------- -------------------
   id                  BIGINT     사용자 ID
-  user_id             VARCHAR    로그인 아이디
+  login_id            VARCHAR    로그인 아이디
   email               VARCHAR    로그인 이메일
   password            VARCHAR    암호화된 비밀번호
   nickname            VARCHAR    닉네임
@@ -124,7 +124,7 @@ Diary 1 : N ChatSession
 
 ``` json
 {
-  "userId": "seungmin",
+  "loginId": "seungmin",
   "email": "test@example.com",
   "password": "12345678",
   "nickname": "승민",
@@ -137,7 +137,7 @@ Diary 1 : N ChatSession
 ``` json
 {
   "id": 1,
-  "userId": "seungmin",
+  "loginId": "seungmin",
   "email": "test@example.com",
   "nickname": "승민",
   "phoneNumber": "010-1234-5678"
@@ -154,7 +154,7 @@ Diary 1 : N ChatSession
 
 ``` json
 {
-  "userId": "seungmin",
+  "loginId": "seungmin",
   "password": "12345678"
 }
 ```
@@ -165,44 +165,6 @@ Diary 1 : N ChatSession
 {
   "accessToken": "jwt-access-token",
   "refreshToken": "jwt-refresh-token"
-}
-```
-
-------------------------------------------------------------------------
-
-### 비밀번호 재발급
-
-아이디와 선택한 연락처가 같은 회원 정보에 등록되어 있을 때만 새 비밀번호를
-발송합니다. 회원 정보 노출을 막기 위해 일치 여부와 관계없이 동일한 응답을
-반환합니다.
-
-**POST** `/api/auth/password/reset-request`
-
-#### 이메일로 받기
-
-``` json
-{
-  "userId": "seungmin",
-  "method": "EMAIL",
-  "email": "test@example.com"
-}
-```
-
-#### 휴대폰 번호로 받기
-
-``` json
-{
-  "userId": "seungmin",
-  "method": "PHONE",
-  "phoneNumber": "010-1234-5678"
-}
-```
-
-#### Response
-
-``` json
-{
-  "message": "입력한 정보가 일치하면 새 비밀번호가 발송됩니다."
 }
 ```
 

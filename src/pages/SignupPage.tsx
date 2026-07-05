@@ -1,31 +1,102 @@
-import { useState, useEffect } from "react";
-import type { FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { signupApi } from "../api/authApi";
 import { EyeIcon, LeafMark } from "../components/icons";
 import "../styles/AuthPage.css";
 import "./SignupPage.css";
 
+const phoneNumberPattern = /^01[016789]-?\d{3,4}-?\d{4}$/;
+
+const formatPhoneNumber = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+
+  return `${digits.slice(0, 3)}-${digits.slice(3, -4)}-${digits.slice(-4)}`;
+};
+
+const signupSchema = z
+  .object({
+    loginId: z
+      .string()
+      .min(4, "아이디는 4자 이상 입력해주세요.")
+      .max(20, "아이디는 20자 이하로 입력해주세요.")
+      .regex(/^[A-Za-z0-9_]+$/, "영문, 숫자, 밑줄만 사용할 수 있어요."),
+    nickname: z
+      .string()
+      .trim()
+      .min(2, "닉네임은 2자 이상 입력해주세요.")
+      .max(20, "닉네임은 20자 이하로 입력해주세요."),
+    email: z
+      .string()
+      .trim()
+      .min(1, "이메일을 입력해주세요.")
+      .pipe(z.email("올바른 이메일 주소를 입력해주세요.")),
+    phoneNumber: z
+      .string()
+      .trim()
+      .regex(phoneNumberPattern, "올바른 휴대폰 번호를 입력해주세요."),
+    password: z.string().min(8, "비밀번호는 8자 이상 입력해주세요."),
+    passwordConfirm: z.string().min(1, "비밀번호를 한 번 더 입력해주세요."),
+    termsAccepted: z
+      .boolean()
+      .refine((accepted) => accepted, "이용약관과 개인정보처리방침에 동의해주세요."),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    path: ["passwordConfirm"],
+    message: "비밀번호가 일치하지 않아요.",
+  });
+
+type SignupFormValues = z.infer<typeof signupSchema>;
+
 function SignupPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [error, setError] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const {
+    register,
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<SignupFormValues>({
+    resolver: zodResolver(signupSchema),
+    defaultValues: {
+      loginId: "",
+      nickname: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+      passwordConfirm: "",
+      termsAccepted: false,
+    },
+    mode: "onBlur",
+  });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = async (values: SignupFormValues) => {
+    try {
+      await signupApi({
+        loginId: values.loginId,
+        nickname: values.nickname,
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        password: values.password,
+      });
+      navigate("/login", { replace: true });
+    } catch (error) {
+      const message =
+        axios.isAxiosError<{ message?: string }>(error) &&
+        error.response?.data?.message
+          ? error.response.data.message
+          : "회원가입에 실패했어요. 잠시 후 다시 시도해주세요.";
 
-    const formData = new FormData(event.currentTarget);
-    const password = String(formData.get("password") ?? "");
-    const passwordConfirm = String(formData.get("passwordConfirm") ?? "");
-
-    if (password !== passwordConfirm) {
-      setError("비밀번호가 일치하지 않아요.");
-      setSubmitted(false);
-      return;
+      setError("root.server", { message });
     }
-
-    setError("");
-    setSubmitted(true);
   };
 
   useEffect(() => {
@@ -97,68 +168,98 @@ function SignupPage() {
             <p>당신만의 기록 공간을 만들어볼까요?</p>
           </header>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="signup-field">
               <label htmlFor="user-id">아이디</label>
               <input
                 id="user-id"
-                name="userId"
                 type="text"
                 placeholder="사용할 아이디를 입력해주세요"
                 autoComplete="username"
-                minLength={4}
-                maxLength={20}
-                pattern="[A-Za-z0-9_]+"
-                title="영문, 숫자, 밑줄만 사용할 수 있어요."
-                required
+                aria-invalid={Boolean(errors.loginId)}
+                aria-describedby={errors.loginId ? "user-id-error" : "user-id-hint"}
+                {...register("loginId")}
               />
-              <span className="field-hint">
-                영문, 숫자, 밑줄을 사용해 4자 이상 20자 이하로 입력해주세요.
-              </span>
+              {errors.loginId ? (
+                <span id="user-id-error" className="field-error" role="alert">
+                  {errors.loginId.message}
+                </span>
+              ) : (
+                <span id="user-id-hint" className="field-hint">
+                  영문, 숫자, 밑줄을 사용해 4자 이상 20자 이하로 입력해주세요.
+                </span>
+              )}
             </div>
 
             <div className="signup-field">
               <label htmlFor="nickname">닉네임</label>
               <input
                 id="nickname"
-                name="nickname"
                 type="text"
                 placeholder="사용할 닉네임을 입력해주세요"
                 autoComplete="nickname"
-                minLength={2}
-                maxLength={20}
-                required
+                aria-invalid={Boolean(errors.nickname)}
+                aria-describedby={errors.nickname ? "nickname-error" : "nickname-hint"}
+                {...register("nickname")}
               />
-              <span className="field-hint">
-                2자 이상 20자 이하로 입력해주세요.
-              </span>
+              {errors.nickname ? (
+                <span id="nickname-error" className="field-error" role="alert">
+                  {errors.nickname.message}
+                </span>
+              ) : (
+                <span id="nickname-hint" className="field-hint">
+                  2자 이상 20자 이하로 입력해주세요.
+                </span>
+              )}
             </div>
 
             <div className="signup-field">
               <label htmlFor="signup-email">이메일</label>
               <input
                 id="signup-email"
-                name="email"
                 type="email"
                 placeholder="example@email.com"
                 autoComplete="email"
-                required
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                {...register("email")}
               />
+              {errors.email && (
+                <span id="email-error" className="field-error" role="alert">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
 
             <div className="signup-field">
               <label htmlFor="phone-number">휴대폰 번호</label>
-              <input
-                id="phone-number"
+              <Controller
                 name="phoneNumber"
-                type="tel"
-                placeholder="010-1234-5678"
-                autoComplete="tel"
-                inputMode="tel"
-                pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
-                title="휴대폰 번호를 올바르게 입력해주세요."
-                required
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    id="phone-number"
+                    type="tel"
+                    placeholder="010-1234-5678"
+                    autoComplete="tel"
+                    inputMode="numeric"
+                    maxLength={13}
+                    aria-invalid={Boolean(errors.phoneNumber)}
+                    aria-describedby={
+                      errors.phoneNumber ? "phone-number-error" : undefined
+                    }
+                    onChange={(event) =>
+                      field.onChange(formatPhoneNumber(event.target.value))
+                    }
+                  />
+                )}
               />
+              {errors.phoneNumber && (
+                <span id="phone-number-error" className="field-error" role="alert">
+                  {errors.phoneNumber.message}
+                </span>
+              )}
             </div>
 
             <div className="signup-field">
@@ -166,12 +267,12 @@ function SignupPage() {
               <div className="password-field">
                 <input
                   id="signup-password"
-                  name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="8자 이상 입력해주세요"
                   autoComplete="new-password"
-                  minLength={8}
-                  required
+                  aria-invalid={Boolean(errors.password)}
+                  aria-describedby={errors.password ? "password-error" : "password-hint"}
+                  {...register("password")}
                 />
                 <button
                   type="button"
@@ -184,9 +285,15 @@ function SignupPage() {
                   <EyeIcon hidden={showPassword} />
                 </button>
               </div>
-              <span className="field-hint">
-                8자 이상의 비밀번호를 사용해주세요.
-              </span>
+              {errors.password ? (
+                <span id="password-error" className="field-error" role="alert">
+                  {errors.password.message}
+                </span>
+              ) : (
+                <span id="password-hint" className="field-hint">
+                  8자 이상의 비밀번호를 사용해주세요.
+                </span>
+              )}
             </div>
 
             <div className="signup-field">
@@ -194,13 +301,14 @@ function SignupPage() {
               <div className="password-field">
                 <input
                   id="password-confirm"
-                  name="passwordConfirm"
                   type={showPasswordConfirm ? "text" : "password"}
                   placeholder="비밀번호를 한 번 더 입력해주세요"
                   autoComplete="new-password"
-                  minLength={8}
-                  aria-describedby={error ? "signup-error" : undefined}
-                  required
+                  aria-invalid={Boolean(errors.passwordConfirm)}
+                  aria-describedby={
+                    errors.passwordConfirm ? "password-confirm-error" : undefined
+                  }
+                  {...register("passwordConfirm")}
                 />
                 <button
                   type="button"
@@ -215,33 +323,53 @@ function SignupPage() {
                   <EyeIcon hidden={showPasswordConfirm} />
                 </button>
               </div>
+              {errors.passwordConfirm && (
+                <span
+                  id="password-confirm-error"
+                  className="field-error"
+                  role="alert"
+                >
+                  {errors.passwordConfirm.message}
+                </span>
+              )}
             </div>
 
             <label className="terms-check">
-              <input type="checkbox" name="termsAccepted" required />
+              <input
+                type="checkbox"
+                aria-invalid={Boolean(errors.termsAccepted)}
+                aria-describedby={
+                  errors.termsAccepted ? "terms-accepted-error" : undefined
+                }
+                {...register("termsAccepted")}
+              />
               <span>
                 <a href="#terms">이용약관</a> 및{" "}
                 <a href="#privacy">개인정보처리방침</a>에 동의합니다.
               </span>
             </label>
 
-            {error && (
+            {errors.termsAccepted && (
               <p
-                id="signup-error"
+                id="terms-accepted-error"
                 className="signup-message error-message"
                 role="alert"
               >
-                {error}
+                {errors.termsAccepted.message}
               </p>
             )}
-            {submitted && (
-              <p className="signup-message success-message" role="status">
-                입력을 확인했어요. 실제 API 연결 후 가입이 완료됩니다.
+            {errors.root?.server && (
+              <p className="signup-message error-message" role="alert">
+                {errors.root.server.message}
               </p>
             )}
 
-            <button className="login-button signup-button" type="submit">
-              회원가입
+            <button
+              className="login-button signup-button"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "가입 중..." : "회원가입"}
             </button>
           </form>
 

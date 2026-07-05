@@ -60,15 +60,28 @@
   box-shadow: 0 0 0 3px rgba(65, 99, 78, 0.09);
 }
 
+.signup-field > input[aria-invalid="true"],
+.signup-field .password-field input[aria-invalid="true"] {
+  border-color: #b86a62;
+}
+
 .signup-field .visibility-button {
   height: 48px;
 }
 
-.field-hint {
+.field-hint,
+.field-error {
   display: block;
   margin-top: 5px;
-  color: #919a93;
   font-size: 9px;
+}
+
+.field-hint {
+  color: #919a93;
+}
+
+.field-error {
+  color: #a94b46;
 }
 
 .terms-check {
@@ -111,6 +124,11 @@
 
 .signup-button {
   height: 49px;
+}
+
+.signup-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .login-link {
@@ -159,7 +177,8 @@
     margin-bottom: 10px;
   }
 
-  .field-hint {
+  .field-hint,
+  .field-error {
     display: none;
   }
 }
