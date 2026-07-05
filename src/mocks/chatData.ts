@@ -70,3 +70,41 @@ export const chatPrompts = [
   "지금 마음을 색으로 표현하기",
   "나에게 해주고 싶은 말",
 ];
+
+export const conversationStarters = [
+  {
+    id: "today",
+    emoji: "🌿",
+    title: "오늘의 마음 돌아보기",
+    description: "오늘 있었던 일과 지금의 감정을 천천히 이야기해요.",
+    prompt: "오늘 하루를 천천히 돌아보고 싶어요.",
+  },
+  {
+    id: "worry",
+    emoji: "☁️",
+    title: "걱정되는 마음 나누기",
+    description: "혼자 품고 있던 걱정을 부담 없이 꺼내놓아요.",
+    prompt: "요즘 마음에 걸리는 걱정이 있어요.",
+  },
+  {
+    id: "comfort",
+    emoji: "🌼",
+    title: "나를 위한 위로",
+    description: "지친 마음에 지금 필요한 말을 함께 찾아봐요.",
+    prompt: "오늘은 따뜻한 위로가 필요한 날이에요.",
+  },
+  {
+    id: "diary",
+    emoji: "✨",
+    title: "일기에서 대화 이어가기",
+    description: "기록한 일기를 바탕으로 마음을 더 깊이 들여다봐요.",
+    prompt: "최근에 쓴 일기에 대해 더 이야기하고 싶어요.",
+  },
+];
+
+export const recentDiaryOptions = [
+  { id: "", label: "일기를 연결하지 않을게요" },
+  { id: "1", label: "7월 3일 · 천천히 흘러간 오후" },
+  { id: "2", label: "7월 2일 · 새로운 시작 앞에서" },
+  { id: "3", label: "6월 30일 · 마음에 남은 말들" },
+];

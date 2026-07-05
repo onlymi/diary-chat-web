@@ -38,7 +38,7 @@
   font-size: 22px;
 }
 
-.chat-history-header button {
+.chat-history-header > a {
   display: grid;
   width: 35px;
   height: 35px;
@@ -49,9 +49,10 @@
   border-radius: 50%;
   background: #3d624c;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.chat-history-header button svg,
+.chat-history-header > a svg,
 .chat-search svg,
 .message-composer button svg {
   width: 17px;

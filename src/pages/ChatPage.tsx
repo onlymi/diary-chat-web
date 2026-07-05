@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { DashboardIcon, LeafMark } from "../components/icons";
 import {
   chatPrompts,
@@ -43,9 +44,9 @@ function ChatPage() {
                 <span>MY CONVERSATIONS</span>
                 <h1>마음 대화</h1>
               </div>
-              <button type="button" aria-label="새 대화">
+              <Link to="/chat/new" aria-label="새 대화">
                 <DashboardIcon name="plus" />
-              </button>
+              </Link>
             </div>
 
             <label className="chat-search">

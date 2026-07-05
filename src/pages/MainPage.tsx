@@ -33,9 +33,7 @@ function MainPage() {
       "YOU LOOK LIKE YOU NEED TO SLEEP",
     ];
 
-    const randomIndex = Math.floor(Math.random() * dawnGreetings.length);
-
-    return dawnGreetings[randomIndex];
+    return dawnGreetings[hour % dawnGreetings.length];
   };
 
   return (
@@ -84,10 +82,10 @@ function MainPage() {
             마음에 남은 순간은 무엇인가요?”
           </blockquote>
           <p>기록하기 어려운 마음은 대화로 시작해도 괜찮아요.</p>
-          <button type="button">
+          <Link className="start-chat-link" to="/chat/new">
             대화 시작하기
             <DashboardIcon name="arrow" />
-          </button>
+          </Link>
         </article>
       </section>
 

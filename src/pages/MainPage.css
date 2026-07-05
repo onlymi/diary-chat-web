@@ -350,7 +350,8 @@
 
 .write-card button,
 .write-card .write-diary-link,
-.chat-card button {
+.chat-card button,
+.chat-card .start-chat-link {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -374,6 +375,7 @@
 .write-card button svg,
 .write-card .write-diary-link svg,
 .chat-card button svg,
+.chat-card .start-chat-link svg,
 .section-heading a svg,
 .diary-item > button svg {
   width: 16px;
@@ -483,6 +485,11 @@
 }
 
 .chat-card button {
+  margin-top: 18px;
+  color: #46624f;
+}
+
+.chat-card .start-chat-link {
   margin-top: 18px;
   color: #46624f;
 }
