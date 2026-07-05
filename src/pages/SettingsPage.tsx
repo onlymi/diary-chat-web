@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { DashboardIcon } from "../components/icons";
 import {
   initialNotificationSettings,
@@ -67,7 +67,13 @@ function Toggle({
 }
 
 function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<SettingsTab>("profile");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const activeTab: SettingsTab = settingsTabs.some(
+    (tab) => tab.id === requestedTab,
+  )
+    ? (requestedTab as SettingsTab)
+    : "profile";
   const [profileSaved, setProfileSaved] = useState(false);
   const [notifications, setNotifications] = useState(
     initialNotificationSettings,
@@ -101,7 +107,7 @@ function SettingsPage() {
                   type="button"
                   className={activeTab === tab.id ? "active" : ""}
                   onClick={() => {
-                    setActiveTab(tab.id);
+                    setSearchParams({ tab: tab.id });
                     setProfileSaved(false);
                   }}
                   key={tab.id}
